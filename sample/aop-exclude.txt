@@ -1,0 +1,6 @@
+com/android/internal/util/Predicate
+com.android
+com.support
+android.support
+android.arch
+BaseActivity.class

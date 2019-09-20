@@ -1,0 +1,51 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+repositories {
+    maven { url 'file:/Users/yuqiang/workspace/project/ClassKnife/repo/' }
+    google()
+    jcenter()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url 'file:/' + rootDir+ '/repo' }
+
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src/main/groovy']
+        }
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/main/java', 'src/main/groovy', 'src/test/java']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile gradleApi()
+    compile localGroovy()
+    compile 'org.ow2.asm:asm:5.1'
+    compile 'org.ow2.asm:asm-commons:5.1'
+    implementation 'commons-io:commons-io:2.5'
+    compile 'com.android.tools.build:gradle:2.1.0'
+    compile 'com.yuqiang.aop:aop-annonations:' + rootProject.aop_annonations
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+
+
+compileGroovy {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
+apply from: '../script/uploadJar.gradle'
+

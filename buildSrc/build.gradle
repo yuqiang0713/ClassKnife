@@ -1,0 +1,55 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories {
+    maven { url 'file:/D:/workspace/project/classKnife/repo/' }
+    jcenter()
+    mavenCentral()
+    google()
+    maven { url "https://maven.google.com" }
+}
+
+compileGroovy {
+    groovyOptions.javaAnnotationProcessing = true
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'file:/' + rootDir+ '/repo' }
+    }
+
+    dependencies {
+        // 将项目发布到JCenter 所需要依赖的jar
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation gradleApi()
+    implementation localGroovy()
+
+    implementation 'org.ow2.asm:asm:5.1'
+    implementation 'org.ow2.asm:asm-commons:5.1'
+    //gradle
+    implementation 'com.android.tools.build:gradle:3.2.0'
+    implementation 'org.javassist:javassist:3.18.2-GA'
+    implementation 'commons-io:commons-io:2.5'
+    implementation 'com.google.auto.service:auto-service:1.0-rc4'
+
+    compile 'com.yuqiang.aop:aop-annonations:0.0.1-SNAPSHOT'
+}
+
+sourceSets {
+    main {
+        groovy.srcDirs = ['src/main/groovy', '../plugin/src/main/groovy']
+        resources.srcDirs = ['src/main/resources', '../plugin/src/main/resources']
+        java.srcDirs = ['src/main/java', '../plugin/src/main/java']
+    }
+}
+

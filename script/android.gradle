@@ -1,0 +1,15 @@
+android {
+    defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
+    compileSdkVersion Integer.parseInt(project.compileSdkVersion)
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+    }
+    compileOptions.encoding = "UTF-8"
+
+//    dependencies {
+//        compileOnly 'com.google.auto.service:auto-service:1.0-rc4'
+//        kapt 'com.google.auto.service:auto-service:1.0-rc4'
+//    }
+}

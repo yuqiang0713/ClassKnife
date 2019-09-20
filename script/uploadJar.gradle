@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+jar {
+    manifest {
+        attributes 'Group-Id': project.GROUP_ID
+        attributes 'Artifact-Id': project.ARTIFACT_ID
+        attributes 'Version': project.VERSION
+    }
+}
+
+task packageSources(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts.archives packageSources
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                groupId project.GROUP_ID
+                artifactId project.ARTIFACT_ID
+                version project.VERSION
+                description project.description ?: ''
+            }
+            if (project.LOCAL) {
+                repository(url: uri('../repo'))
+            } else {
+                repository(url: MAVEN_RELEASES_REPOSITORY_URL) {
+                    authentication(userName: MAVEN_USERNAME, password: MAVEN_PASSWORD)
+                }
+                snapshotRepository(url: MAVEN_SNAPSHOTS_REPOSITORY_URL) {
+                    authentication(userName: MAVEN_USERNAME, password: MAVEN_PASSWORD)
+                }
+            }
+        }
+    }
+}

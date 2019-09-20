@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yuqiang.sampling" >
+    <application>
+        <provider
+            android:authorities="${applicationId}"
+            android:name="com.yuqiang.sampling.Samping"/>
+    </application>
+</manifest>

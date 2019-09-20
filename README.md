@@ -27,12 +27,12 @@ A lightweight Android Studio gradle plugin based on ASM for editing bytecode in 
 
 ```groovy
 dependencies {
-    classpath "com.yuqiang.aop:class-knife:0.0.1"
+    classpath "com.yuqiang.aop:class-knife:0.0.1" //暂是未上传到jcenter仓库**
 }
 
 在使用注解的地方引入注解库
 dependencies {
-    implementation 'com.yuqiang.aop:aop-annonations:0.0.1'  
+    implementation 'com.yuqiang.aop:aop-annonations:0.0.1'  //暂是未上传到jcenter仓库
 }
 
 在app项目的build.gradle里应用插件
@@ -41,8 +41,8 @@ classKnife {
     enable          //插件开关 默认true
     include         //包含包名
     exclude         //排除的包名
-    如果第三方库混淆了需要exclude出去 否则会导致参数列表出错 因为【为了尽可能节省栈帧空间，局部变量中的 Slot 是可以重用的】  
 }
+//如果第三方库混淆了需要exclude出去 否则会导致参数列表出错 因为【为了尽可能节省栈帧空间，局部变量中的 Slot 是可以重用的】
 ```
 
 ##函数配置规则（除了Aspect作用在类上 其他注解均作用在方法上）
@@ -70,6 +70,7 @@ classKnife {
 
 ## 示例
 ```java
+//Java文件配置
 @Aspect
 public class AopConfig {
      
@@ -159,6 +160,7 @@ public class AopConfig {
 
 
 ```java
+//Kotlin文件配置
 @Aspect
 class AopKotlinConfig {
  

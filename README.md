@@ -27,12 +27,12 @@ A lightweight Android Studio gradle plugin based on ASM for editing bytecode in 
 
 ```groovy
 dependencies {
-    classpath "com.yuqiang.aop:class-knife:0.0.1" //暂是未上传到jcenter仓库**
+    classpath "com.yuqiang.aop:class-knife:0.0.1"
 }
 
 在使用注解的地方引入注解库
 dependencies {
-    implementation 'com.yuqiang.aop:aop-annonations:0.0.1'  //暂是未上传到jcenter仓库
+    implementation 'com.yuqiang.aop:aop-annonations:0.0.1'
 }
 
 在app项目的build.gradle里应用插件
@@ -45,7 +45,7 @@ classKnife {
 //如果第三方库混淆了需要exclude出去 否则会导致参数列表出错 因为【为了尽可能节省栈帧空间，局部变量中的 Slot 是可以重用的】
 ```
 
-##函数配置规则（除了Aspect作用在类上 其他注解均作用在方法上）
+## 函数配置规则（除了Aspect作用在类上 其他注解均作用在方法上）
 
 | 注解        | 函数签名列表   | Join Point类型 | Target | 
 | --------   | -----:  | -----:  | -----:  |
@@ -56,7 +56,7 @@ classKnife {
 | @Timing       |public static void timingBefore/After(String desc) | execution | 方法 | 
 | @Replace      |public static void replaceFun($this, $1, $2....) |call |方法 | 
 
-###注解公共属性介绍
+### 注解公共属性介绍
 - target   是一个数组用来描述要处理的类的信息 格式 类名.方法名.函数签名 如 :  com.yuqianig.classknife.MainActivity.onBackPressed()V
 - entend 是否继承匹配 默认false是类名完全匹配
 - enter   默认true 表示环绕方法前相当于Before false相当于After 可单独配置其中一个也可配置俩个
